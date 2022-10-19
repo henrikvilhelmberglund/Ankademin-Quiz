@@ -90,7 +90,7 @@ let darkModeToggleButton = document.createElement("button");
 darkModeToggleButton.innerText = "Toggle Dark Mode";
 darkModeToggleButton.addEventListener("click", () => { toggleDarkMode(); });
 let darkMode = false;
-mainDiv.append(darkModeToggleButton);
+document.body.prepend(darkModeToggleButton);
 
 function toggleDarkMode() {
   if (darkMode) {
@@ -100,16 +100,57 @@ function toggleDarkMode() {
     darkMode = false;
   }
   else {
-
     document.body.className = "dark";
     darkModeToggleButton.className = "dark-button";
-
     darkModeToggleButton.innerText = "Toggle Light Mode";
     darkMode = true;
   }
 }
 
-function displayQuestion() {
+let currentQuestion = 0;
 
+displayQuestion();
+
+function displayQuestion() {
+  let questionP = document.createElement("p");
+  questionP.innerText = questions[currentQuestion].question;
+  mainDiv.append(questionP);
+
+  if (questions[currentQuestion].questionType === "trueFalse") {
+    let yesButton = document.createElement("button");
+    yesButton.innerText = "Yes";
+    mainDiv.append(yesButton);
+    let noButton = document.createElement("button");
+    noButton.innerText = "No";
+    mainDiv.append(noButton);
+    return "trueFalse";
+  }
+  else if (questions[currentQuestion].questionType === "checkboxes") {
+    return "checkboxes";
+  }
+  else if (questions[currentQuestion].questionType === "multipleChoice") {
+    return "multipleChoice";
+  }
+}
+
+let answers = [];
+
+function checkAnswer(e) {
+  if (questions[currentQuestion].questionType === "trueFalse") {
+    if (e.target.innerText === "questions[currentQuestion.answers]) {
+      
+    }
+  else {
+
+  }
+  return "trueFalse";
+}
+  else if (questions[currentQuestion].questionType === "checkboxes") {
+  return "checkboxes";
+}
+else if (questions[currentQuestion].questionType === "multipleChoice") {
+  return "multipleChoice";
+}
+  
 }
 
