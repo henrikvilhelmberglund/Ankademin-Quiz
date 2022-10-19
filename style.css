@@ -23,3 +23,15 @@
   background-color: rgb(51, 51, 51);
   color: white;
 }
+
+.result-red {
+  color: red;
+}
+
+.result-yellow {
+  color: yellow
+}
+
+.result-green {
+  color: green;
+}

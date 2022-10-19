@@ -298,6 +298,23 @@ function nextQuestion() {
 
 function showResults() {
   mainDiv.innerHTML = "";
-
+  let totalCorrect = 4;
+  userAnswers.forEach((userAnswer, i) => {
+    let userAnswerEmoji = userAnswer === "correct" ? "✔️" : "❌";
+    totalCorrect = userAnswer === "correct" ? totalCorrect += 1 : totalCorrect;
+    let p = `Question ${i + 1}: ${userAnswerEmoji}`;
+    mainDiv.append(p);
+  });
+  let totalDiv = document.createElement("div");
+  let totalP = document.createElement("p");
+  totalDiv.className = totalCorrect / questions.length > 0.75 ? "result-green" :
+    totalCorrect / questions.length >= 0.5 ? "result-yellow" :
+      totalCorrect / questions.length < 0.5 ? "result-red" : "error";
+  let grade = totalCorrect / questions.length > 0.75 ? "Congratulations! You passed with honors!" :
+    totalCorrect / questions.length >= 0.5 ? "Congratulations, you passed." :
+      totalCorrect / questions.length < 0.5 ? "Unfortunately you didn't pass." : "error";
+  totalP.innerText = `You had a total of ${totalCorrect} out of ${questions.length} correct answers. ${grade}`;
+  mainDiv.append(totalDiv);
+  totalDiv.append(totalP);
 }
 
