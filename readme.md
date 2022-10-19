@@ -45,3 +45,6 @@ Du ska även ha ditt projekt på Github och pusha upp kod kontinuerligt under pr
 ?Bonus: Försök att snygga till quizet med CSS så att den ser lite mer användarvänlig ut!
 
 ?Inlämning sker i form av en (publik, ej privat) github-länk.
+
+// push dist to gh-pages
+// git subtree push --prefix . origin gh-pages
