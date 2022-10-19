@@ -223,11 +223,13 @@ function returnCorrectAnswers() {
       correctAnswers.push(item);
     }
   });
-  return correctAnswers;
+  return { correctAnswers, answer, answerArray };
+
+
 }
 
 function checkAnswer(e) {
-  let correctAnswers = returnCorrectAnswers();
+  let correctAnswers = returnCorrectAnswers().correctAnswers;
   if (questions[currentQuestion].questionType === "trueFalse") {
     if (e.target.innerText.toUpperCase() === correctAnswers[0]) {
       userAnswers.push("correct");
