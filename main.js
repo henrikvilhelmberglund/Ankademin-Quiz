@@ -84,6 +84,7 @@ const questions = [
   },
 ];
 
+let debug = true;
 let mainDiv = document.createElement("div");
 document.body.append(mainDiv);
 let darkModeToggleButton = document.createElement("button");
@@ -107,9 +108,25 @@ function toggleDarkMode() {
   }
 }
 
-let currentQuestion = 0;
+let currentQuestion = 10;
 
 displayQuestion();
+
+function capitalize(string) {
+  string = Array.from(string);
+
+  string.forEach((character, i) => {
+    if (i === 0) {
+      string[0] = character.toUpperCase();
+    }
+    else {
+      string[i] = character.toLowerCase();
+    }
+  });
+  string = string.join("");
+  return string;
+}
+
 
 function displayQuestion() {
   mainDiv.innerHTML = "";
@@ -129,6 +146,28 @@ function displayQuestion() {
     return "trueFalse";
   }
   else if (questions[currentQuestion].questionType === "checkboxes") {
+    questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
+      let checkbox = document.createElement("input");
+      checkbox.id = "checkbox";
+      checkbox.value = possibleAnswer;
+      let checkboxLabel = document.createElement("label");
+      if (debug) {
+        checkboxLabel.innerText = possibleAnswer;
+      }
+      else {
+        checkboxLabel.innerText = capitalize(possibleAnswer);
+      }
+      checkboxLabel.htmlFor = "checkbox";
+      mainDiv.append(checkboxLabel);
+
+      checkbox.type = "checkbox";
+      mainDiv.append(checkbox);
+    });
+    let submitButton = document.createElement("button");
+    submitButton.addEventListener("click", (e) => checkAnswer(e));
+    submitButton.innerText = "Submit";
+    mainDiv.append(submitButton);
+
     return "checkboxes";
   }
   else if (questions[currentQuestion].questionType === "multipleChoice") {
@@ -152,6 +191,7 @@ function returnCorrectAnswers() {
 
 function checkAnswer(e) {
   let correctAnswers = returnCorrectAnswers();
+  let selectedCheckboxes = "";
   if (questions[currentQuestion].questionType === "trueFalse") {
     if (e.target.innerText.toUpperCase() === correctAnswers[0]) {
       userAnswers.push("correct");
@@ -162,11 +202,30 @@ function checkAnswer(e) {
     nextQuestion();
   }
   else if (questions[currentQuestion].questionType === "checkboxes") {
-    nextQuestion();
-    return "checkboxes";
+    //nextQuestion(); 
+    selectedCheckboxes = Array.from(document.querySelectorAll("input:checked")).map(element => element.value);
+    let correctLength = 0;
+    selectedCheckboxes.forEach(answer => {
+      if (correctAnswers.includes(answer)) {
+        correctLength += 1;
+      }
+
+    });
+    if (correctLength === correctAnswers.length) {
+      // check if user selected the correct answers and not just everything
+      if (selectedCheckboxes.length === correctAnswers.length) {
+        userAnswers.push("correct");
+      }
+      else {
+        userAnswers.push("incorrect");
+      }
+    }
+    else {
+      userAnswers.push("incorrect");
+    }
   }
   else if (questions[currentQuestion].questionType === "multipleChoice") {
-    nextQuestion();
+    //nextQuestion();
     return "multipleChoice";
   }
 
