@@ -84,7 +84,7 @@ const questions = [
   },
 ];
 
-let debug = true;
+let debug = false;
 let mainDiv = document.createElement("div");
 document.body.append(mainDiv);
 let darkModeToggleButton = document.createElement("button");
@@ -298,7 +298,7 @@ function nextQuestion() {
 
 function showResults() {
   mainDiv.innerHTML = "";
-  let totalCorrect = 4;
+  let totalCorrect = 0;
   userAnswers.forEach((userAnswer, i) => {
     let userAnswerEmoji = userAnswer === "correct" ? "✔️" : "❌";
     totalCorrect = userAnswer === "correct" ? totalCorrect += 1 : totalCorrect;
