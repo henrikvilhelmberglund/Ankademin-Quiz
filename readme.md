@@ -27,17 +27,17 @@ Du ska även ha ditt projekt på Github och pusha upp kod kontinuerligt under pr
 
 ?Betyg VG
 
-?Alla G-krav är uppfyllda
+*Alla G-krav är uppfyllda
 
-?Frågorna ska bestå utav en blandning av följande typer (minst 2 av varje typ)
+*Frågorna ska bestå utav en blandning av följande typer (minst 2 av varje typ)
 
-?Sant/falskt-påståenden - (Två svarsalternativ - Sant eller Falskt)
+*Sant/falskt-påståenden - (Två svarsalternativ - Sant eller Falskt)
 
-?Multiple choice - (Fyra svarsalternativ varav ett rätt svar)
+*Multiple choice - (Fyra svarsalternativ varav ett rätt svar)
 
-?Checkbox-svar (4 checkboxar med svarsalternativ - 1-3 rätta svar, minst 1 felaktigt svar).
+*Checkbox-svar (4 checkboxar med svarsalternativ - 1-3 rätta svar, minst 1 felaktigt svar).
 
-?Användaren ska kunna se exakt vilka frågor hen besvarat rätt och/eller felaktigt när resultatet visas. (Om hen besvarat frågan fel, bestämmer du själv om du vill skriva ut det rätta svaret eller inte).
+*Användaren ska kunna se exakt vilka frågor hen besvarat rätt och/eller felaktigt när resultatet visas. (Om hen besvarat frågan fel, bestämmer du själv om du vill skriva ut det rätta svaret eller inte).
 
 ?Tekniskt krav: Koden följer “DRY”-principen (Dont repeat yourself) och undviker större upprepningar av kod i logiken.
 
