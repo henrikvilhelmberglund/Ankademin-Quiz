@@ -111,7 +111,7 @@ function toggleDarkMode() {
   }
 }
 
-let currentQuestion = 12;
+let currentQuestion = 11;
 
 displayQuestion();
 
@@ -133,9 +133,9 @@ function capitalize(string) {
 
 function displayQuestion() {
   mainDiv.innerHTML = "";
-  let questionP = document.createElement("p");
-  questionP.innerText = questions[currentQuestion].question;
-  mainDiv.append(questionP);
+  let questionH2 = document.createElement("h2");
+  questionH2.innerText = questions[currentQuestion].question;
+  mainDiv.append(questionH2);
 
   if (questions[currentQuestion].questionType === "trueFalse") {
     let yesButton = document.createElement("button");
@@ -162,15 +162,20 @@ function displayQuestion() {
       }
 
       checkbox.type = "checkbox";
-      mainDiv.append(checkbox);
       checkboxLabel.htmlFor = "checkbox";
-      mainDiv.append(checkboxLabel);
+      let checkboxDiv = document.createElement("div");
+      mainDiv.append(checkboxDiv);
+      checkboxDiv.append(checkbox);
+      checkboxDiv.append(checkboxLabel);
     });
     let submitButton = document.createElement("button");
     submitButton.className = darkMode ? "button-light" : "button-dark";
     submitButton.addEventListener("click", (e) => checkAnswer(e));
     submitButton.innerText = "Submit";
-    mainDiv.append(submitButton);
+    let buttonDiv = document.createElement("div");
+    mainDiv.append(buttonDiv);
+    buttonDiv.append(submitButton);
+
 
     return "checkboxes";
   }
@@ -189,14 +194,18 @@ function displayQuestion() {
       }
       radioButton.type = "radio";
       radioButtonLabel.htmlFor = "radioButton";
-      mainDiv.append(radioButton);
-      mainDiv.append(radioButtonLabel);
+      let radioButtonDiv = document.createElement("div");
+      mainDiv.append(radioButtonDiv);
+      radioButtonDiv.append(radioButton);
+      radioButtonDiv.append(radioButtonLabel);
     });
     let submitButton = document.createElement("button");
     submitButton.className = darkMode ? "dark-button" : "light-button";
     submitButton.addEventListener("click", (e) => checkAnswer(e));
     submitButton.innerText = "Submit";
-    mainDiv.append(submitButton);
+    let buttonDiv = document.createElement("div");
+    mainDiv.append(buttonDiv);
+    buttonDiv.append(submitButton);
 
     return "multipleChoice";
   }
