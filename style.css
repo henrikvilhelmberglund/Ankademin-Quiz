@@ -1,20 +1,24 @@
 .light {
+  transition: 1s;
   background-color: white;
   color: black;
 }
 
 .dark {
+  transition: 1s;
   background-color: black;
   color: white;
 }
 
 .light-button {
+  transition: 1s;
   border-radius: 8px;
   background-color: rgb(235, 235, 235);
   color: black;
 }
 
 .dark-button {
+  transition: 1s;
   border-radius: 8px;
   background-color: rgb(51, 51, 51);
   color: white;

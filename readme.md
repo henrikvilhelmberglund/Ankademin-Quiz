@@ -12,7 +12,7 @@ Du ska även ha ditt projekt på Github och pusha upp kod kontinuerligt under pr
 
 ?Betyg G
 
-?- Quizet ska innehålla 10 frågor. Frågorna ska bestå utav sant/falskt påståenden med två möjliga svarsalternativ: Sant eller Falskt.
+*- Quizet ska innehålla 10 frågor. Frågorna ska bestå utav sant/falskt påståenden med två möjliga svarsalternativ: Sant eller Falskt.
 
 *- Användaren ska utöver att besvara frågor för quizet, även kunna byta utseende på sidan mellan dark mode (dvs mörk bakgrundsfärg med ljus text ) och light mode (ljus bakgrundsfärg med mörk text).
 
