@@ -20,7 +20,7 @@ const questions = [
   {
     questionType: "trueFalse",
     question: "Are there horses at the Urban Rescue Ranch?",
-    answers: "Yes,No",
+    answers: "Yes,NO",
   },
   {
     questionType: "trueFalse",
@@ -298,14 +298,19 @@ function nextQuestion() {
 
 function showResults() {
   mainDiv.innerHTML = "";
+  let br = document.createElement("br");
   let totalCorrect = 0;
+  let totalDiv = document.createElement("div");
+  mainDiv.append(totalDiv);
   userAnswers.forEach((userAnswer, i) => {
+    let answerDiv = document.createElement("div");
+    answerDiv.className = userAnswer === "correct" ? "result-green" : "result-red";
     let userAnswerEmoji = userAnswer === "correct" ? "✔️" : "❌";
     totalCorrect = userAnswer === "correct" ? totalCorrect += 1 : totalCorrect;
     let p = `Question ${i + 1}: ${userAnswerEmoji}`;
-    mainDiv.append(p);
+    answerDiv.append(p);
+    totalDiv.append(answerDiv);
   });
-  let totalDiv = document.createElement("div");
   let totalP = document.createElement("p");
   totalDiv.className = totalCorrect / questions.length > 0.75 ? "result-green" :
     totalCorrect / questions.length >= 0.5 ? "result-yellow" :
@@ -314,7 +319,6 @@ function showResults() {
     totalCorrect / questions.length >= 0.5 ? "Congratulations, you passed." :
       totalCorrect / questions.length < 0.5 ? "Unfortunately you didn't pass." : "error";
   totalP.innerText = `You had a total of ${totalCorrect} out of ${questions.length} correct answers. ${grade}`;
-  mainDiv.append(totalDiv);
   totalDiv.append(totalP);
 }
 
