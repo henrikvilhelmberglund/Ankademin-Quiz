@@ -140,10 +140,12 @@ function displayQuestion() {
     let yesButton = document.createElement("button");
     yesButton.addEventListener("click", (e) => checkAnswer(e));
     yesButton.innerText = "Yes";
+    yesButton.className = darkMode ? "dark-button" : "light-button";
     mainDiv.append(yesButton);
     let noButton = document.createElement("button");
     noButton.addEventListener("click", (e) => checkAnswer(e));
     noButton.innerText = "No";
+    noButton.className = darkMode ? "dark-button" : "light-button";
     mainDiv.append(noButton);
     return "trueFalse";
   }
@@ -320,5 +322,15 @@ function showResults() {
       totalCorrect / questions.length < 0.5 ? "Unfortunately you didn't pass." : "error";
   totalP.innerText = `You had a total of ${totalCorrect} out of ${questions.length} correct answers. ${grade}`;
   totalDiv.append(totalP);
+  let resetButton = document.createElement("button");
+  resetButton.innerText = "Reset Quiz";
+  resetButton.className = darkMode ? "dark-button" : "light-button";
+  resetButton.addEventListener("click", () => resetQuiz());
+  totalDiv.append(resetButton);
 }
 
+function resetQuiz() {
+  currentQuestion = 0;
+  userAnswers = [];
+  displayQuestion();
+}
