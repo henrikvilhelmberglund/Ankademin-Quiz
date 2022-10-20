@@ -80,7 +80,7 @@ const questions = [
   {
     questionType: "multipleChoice",
     question: "What is the goal the owner of the Urban Rescue Ranch has for his animal friend DaBaby?",
-    answers: "To live a peaceful and happy life,To run from the edge to the other edge of the ranch in 10 seconds,TO FIGHT JAKE PAUL IN A BOXING MATCH,To win a prize in an exhibition"
+    answers: "To live a peaceful and happy life,To run from the edge to the other edge of the ranch in 10 seconds,TO FIGHT *JAKE *PAUL IN A BOXING MATCH,To win a prize in an exhibition"
   },
 ];
 
@@ -110,16 +110,23 @@ function toggleDarkMode() {
     darkMode = true;
   }
 }
-
-let currentQuestion = 0;
+// NOTE - currentQuestion;
+let currentQuestion = 14;
 
 displayQuestion();
 
 function capitalize(string) {
   string = Array.from(string);
-
+  let capsNextCharacter = false;
   string.forEach((character, i) => {
-    if (i === 0) {
+    if (character === "*") {
+      capsNextCharacter = true;
+    }
+    else if (capsNextCharacter) {
+      string[i] = character.toUpperCase();
+      capsNextCharacter = false;
+    }
+    else if (i === 0) {
       string[0] = character.toUpperCase();
     }
     else {
@@ -127,9 +134,10 @@ function capitalize(string) {
     }
   });
   string = string.join("");
+  string = string.replaceAll("*", "");
   return string;
 }
-
+// NOTE - displayQuestion()
 function displayQuestion() {
   mainDiv.innerHTML = "";
   let questionH2 = document.createElement("h2");
