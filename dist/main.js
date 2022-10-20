@@ -224,9 +224,10 @@ function returnCorrectAnswers() {
     }
   });
   return { correctAnswers, answer, answerArray };
-
-
 }
+// fancy logpoint console.table thingy (assumes returning an object with vars)
+// needs to be added at the end of the return statement!!
+// {console.table($returnValue)}
 
 function checkAnswer(e) {
   let correctAnswers = returnCorrectAnswers().correctAnswers;
