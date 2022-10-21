@@ -1,11 +1,3 @@
-/*
-
-*/
-
-// multipleChoice
-// checkboxes
-
-
 const questions = [
   {
     questionType: "trueFalse",
@@ -110,9 +102,9 @@ function toggleDarkMode() {
     darkMode = true;
   }
 }
+
 // NOTE - currentQuestion;
 let currentQuestion = 14;
-
 displayQuestion();
 
 function capitalize(string) {
@@ -137,6 +129,7 @@ function capitalize(string) {
   string = string.replaceAll("*", "");
   return string;
 }
+
 // NOTE - displayQuestion()
 function displayQuestion() {
   mainDiv.innerHTML = "";
@@ -169,7 +162,6 @@ function displayQuestion() {
       else {
         checkboxLabel.innerText = capitalize(possibleAnswer);
       }
-
       checkbox.type = "checkbox";
       checkboxLabel.htmlFor = "checkbox";
       let checkboxDiv = document.createElement("div");
@@ -184,8 +176,6 @@ function displayQuestion() {
     let buttonDiv = document.createElement("div");
     mainDiv.append(buttonDiv);
     buttonDiv.append(submitButton);
-
-
     return "checkboxes";
   }
   else if (questions[currentQuestion].questionType === "multipleChoice") {
@@ -215,7 +205,6 @@ function displayQuestion() {
     let buttonDiv = document.createElement("div");
     mainDiv.append(buttonDiv);
     buttonDiv.append(submitButton);
-
     return "multipleChoice";
   }
 }
@@ -255,7 +244,6 @@ function checkAnswer(e) {
       if (correctAnswers.includes(answer)) {
         correctLength += 1;
       }
-
     });
     if (correctLength === correctAnswers.length) {
       // check if user selected the correct answers and not just everything
@@ -281,11 +269,9 @@ function checkAnswer(e) {
     else {
       userAnswers.push("incorrect");
     }
-
     nextQuestion();
     return "multipleChoice";
   }
-
   return "end";
 }
 
