@@ -274,7 +274,7 @@ function checkAnswer(e) {
   }
   return "end";
 }
-
+  
 function nextQuestion() {
   currentQuestion++;
   if (currentQuestion >= questions.length) {
@@ -297,7 +297,6 @@ function nextQuestion() {
 
 function showResults() {
   mainDiv.innerHTML = "";
-  let br = document.createElement("br");
   let totalCorrect = 0;
   let totalDiv = document.createElement("div");
   mainDiv.append(totalDiv);
