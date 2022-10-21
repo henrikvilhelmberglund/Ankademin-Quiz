@@ -86,6 +86,9 @@ darkModeToggleButton.addEventListener("click", () => { toggleDarkMode(); });
 let darkMode = false;
 document.body.prepend(darkModeToggleButton);
 
+/**
+ * If dark mode is on, turn it off and vice versa
+ */
 function toggleDarkMode() {
   if (darkMode) {
     document.body.className = "light";
@@ -107,6 +110,12 @@ function toggleDarkMode() {
 let currentQuestion = 14;
 displayQuestion();
 
+/**
+ * It takes a string, makes it an array, then iterates through the array, capitalizing the first
+ * letter, and any letter after a *, then returns the string.
+ * @param string - The string to capitalize.
+ * @returns The string with the first letter capitalized and the rest lowercase.
+ */
 function capitalize(string) {
   string = Array.from(string);
   let capsNextCharacter = false;
@@ -131,6 +140,10 @@ function capitalize(string) {
 }
 
 // NOTE - displayQuestion()
+/**
+ * It creates a question and its answers based on the question type.
+ * @returns "trueFalse"
+ */
 function displayQuestion() {
   mainDiv.innerHTML = "";
   let questionH2 = document.createElement("h2");
@@ -211,6 +224,12 @@ function displayQuestion() {
 
 let userAnswers = [];
 
+/**
+ * It takes the answers from the current question, splits them into an array, then checks each item in
+ * the array to see if it's all uppercase. If it is, it pushes it to a new array.
+ * @returns { correctAnswers: [ 'A', 'B' ], answer: 'A,B,c,d', answerArray: [ 'A', 'B', 'c', 'd' ]
+ * }</code>
+ */
 function returnCorrectAnswers() {
   let answer = questions[currentQuestion].answers;
   let answerArray = answer.split(",");
@@ -226,6 +245,11 @@ function returnCorrectAnswers() {
 // needs to be added at the end of the return statement!!
 // {console.table($returnValue)}
 
+/**
+ * It checks the user's answer and pushes the result to the userAnswers array.
+ * @param e - the event object
+ * @returns "end"
+ */
 function checkAnswer(e) {
   let correctAnswers = returnCorrectAnswers().correctAnswers;
   if (questions[currentQuestion].questionType === "trueFalse") {
@@ -275,6 +299,9 @@ function checkAnswer(e) {
   return "end";
 }
   
+/**
+ * It creates a button that, when clicked, calls the showResults() function.
+ */
 function nextQuestion() {
   currentQuestion++;
   if (currentQuestion >= questions.length) {
@@ -295,6 +322,11 @@ function nextQuestion() {
   }
 }
 
+/**
+ * It creates a div for each question, and then appends a paragraph to each div that says whether the
+ * user got the question right or wrong. It then creates a paragraph that says how many questions the
+ * user got right, and appends a button to reset the quiz
+ */
 function showResults() {
   mainDiv.innerHTML = "";
   let totalCorrect = 0;
@@ -325,6 +357,10 @@ function showResults() {
   totalDiv.append(resetButton);
 }
 
+/**
+ * The resetQuiz function resets the currentQuestion to 0, empties the userAnswers array, and displays
+ * the first question.
+ */
 function resetQuiz() {
   currentQuestion = 0;
   userAnswers = [];
