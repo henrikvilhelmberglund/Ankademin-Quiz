@@ -207,11 +207,11 @@ function displayQuestion() {
         radioButtonLabel.innerText = capitalize(possibleAnswer);
       }
       radioButton.type = "radio";
-      radioButton.className = "appearance:none round w:30 h:30 b:2|solid|blue-40 b:2|solid|blue-60:hover bg:blue-40:checked";
+      radioButton.className = "appearance:none round w:30 h:30 b:2|solid|blue-40 b:2|solid|blue-60:hover bg:blue-40:checked v:middle";
       radioButtonLabel.htmlFor = "radioButton";
-      radioButtonLabel.className = "vertical:middle";
+      radioButtonLabel.className = "v:middle m:10";
       let radioButtonDiv = document.createElement("div");
-      radioButtonDiv.className = "f:25! m:1.6rem v:middle";
+      radioButtonDiv.className = "f:25! m:1.6rem";
       mainDiv.append(radioButtonDiv);
       radioButtonDiv.append(radioButton);
       radioButtonDiv.append(radioButtonLabel);
