@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/henrikvilhelmberglund/Ankademin-Quiz#readme",
   "dependencies": {
-    "@master/css": "^1.37.2"
+    "@master/css": "^1.37.2",
+    "gh-pages": "^4.0.0"
   },
   "devDependencies": {
     "parcel": "^2.7.0",
