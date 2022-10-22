@@ -2,7 +2,6 @@
   "name": "ankademin-quiz",
   "version": "1.0.0",
   "description": "Amazing Quiz",
-  "main": "index.html",
   "scripts": {
     "start": "parcel ./index.html",
     "prebuild-dev": "shx rm -rf dist/*",
