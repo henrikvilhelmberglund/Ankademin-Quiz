@@ -1,4 +1,4 @@
-import './styles/master.css';
+import '@master/css';
 const questions = [
   {
     questionType: "trueFalse",

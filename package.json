@@ -4,7 +4,12 @@
   "description": "Amazing Quiz",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel ./index.html",
+    "prebuild-dev": "shx rm -rf dist/*",
+    "build-dev": "parcel build ./index.html --no-optimize --public-url ./",
+    "prebuild": "shx rm -rf dist/*",
+    "build": "parcel build ./index.html --public-url ./",
+    "push-gh-pages": "push-dir --dir=dist --branch=gh-pages --cleanup --verbose"
   },
   "repository": {
     "type": "git",
@@ -18,5 +23,8 @@
   "homepage": "https://github.com/henrikvilhelmberglund/Ankademin-Quiz#readme",
   "dependencies": {
     "@master/css": "^1.37.2"
+  },
+  "devDependencies": {
+    "shx": "^0.3.2"
   }
 }
