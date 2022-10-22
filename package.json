@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/henrikvilhelmberglund/Ankademin-Quiz/issues"
   },
-  "homepage": "https://github.com/henrikvilhelmberglund/Ankademin-Quiz#readme"
+  "homepage": "https://github.com/henrikvilhelmberglund/Ankademin-Quiz#readme",
+  "dependencies": {
+    "@master/css": "^1.37.2"
+  }
 }
