@@ -148,6 +148,7 @@ function displayQuestion() {
   mainDiv.innerHTML = "";
   let questionH2 = document.createElement("h2");
   questionH2.innerText = questions[currentQuestion].question;
+  questionH2.className = "font:40 font:heavy m:10 text:center";
   mainDiv.append(questionH2);
 
   if (questions[currentQuestion].questionType === "trueFalse") {
@@ -298,7 +299,7 @@ function checkAnswer(e) {
   }
   return "end";
 }
-  
+
 /**
  * It creates a button that, when clicked, calls the showResults() function.
  */
