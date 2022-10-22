@@ -108,7 +108,7 @@ function toggleDarkMode() {
 }
 
 // NOTE - currentQuestion;
-let currentQuestion = 14;
+let currentQuestion = 0;
 displayQuestion();
 
 /**
