@@ -198,6 +198,7 @@ function displayQuestion() {
       radioButton.id = "radioButton";
       radioButton.name = radioButton;
       radioButton.value = possibleAnswer;
+      radioButton.className = "ac:normal";
       let radioButtonLabel = document.createElement("label");
       if (debug) {
         radioButtonLabel.innerText = possibleAnswer;
@@ -206,8 +207,11 @@ function displayQuestion() {
         radioButtonLabel.innerText = capitalize(possibleAnswer);
       }
       radioButton.type = "radio";
+      radioButton.className = "appearance:none round w:30 h:30 b:2|solid|blue-40 b:2|solid|blue-60:hover bg:blue-40:checked";
       radioButtonLabel.htmlFor = "radioButton";
+      radioButtonLabel.className = "vertical:middle";
       let radioButtonDiv = document.createElement("div");
+      radioButtonDiv.className = "f:25! m:1.6rem v:middle";
       mainDiv.append(radioButtonDiv);
       radioButtonDiv.append(radioButton);
       radioButtonDiv.append(radioButtonLabel);
