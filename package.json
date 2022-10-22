@@ -25,6 +25,8 @@
     "@master/css": "^1.37.2"
   },
   "devDependencies": {
+    "cssnano": "^5.1.13",
+    "postcss": "^8.4.18",
     "shx": "^0.3.2"
   }
 }
