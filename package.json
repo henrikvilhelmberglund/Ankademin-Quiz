@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "Amazing Quiz",
   "scripts": {
-    "start": "parcel ./index.html",
-    "prebuild-dev": "shx rm -rf dist/*",
-    "build-dev": "parcel build ./index.html --no-optimize --public-url ./",
-    "prebuild": "shx rm -rf dist/*",
-    "build": "parcel build ./index.html --public-url ./",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
@@ -25,7 +23,7 @@
     "gh-pages": "^4.0.0"
   },
   "devDependencies": {
-    "parcel": "^2.7.0",
-    "shx": "^0.3.2"
+    "shx": "^0.3.2",
+    "vite": "^3.1.0"
   }
 }
