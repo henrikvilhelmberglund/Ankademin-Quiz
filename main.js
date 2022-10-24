@@ -78,7 +78,7 @@ const questions = [
 ];
 
 let debug = false;
-let mainDiv = create({ elementType: "div", appendWhere: document.body });
+let mainDiv = create({ elementType: "div", appendWhere: document.body, extraCSS: "flex flex:wrap justify-content:center" });
 let darkModeToggleButton = create({ elementType: "button", prependWhere: document.body, innerText: "Toggle Dark Mode", className: "light-button", eventListenerFunc: () => toggleDarkMode() });
 
 function create({ elementType, appendWhere, innerText = "", eventListenerFunc, className = "no-class", extraCSS = "", value = "no-value", id = "no-id", name = "", htmlFor = "", type = "", prependWhere }) {
@@ -89,7 +89,7 @@ function create({ elementType, appendWhere, innerText = "", eventListenerFunc, c
     myElement.addEventListener("click", eventListenerFunc);
   }
   myElement.className = className;
-  myElement.className += extraCSS;
+  myElement.className += " " + extraCSS;
   myElement.value = value;
   myElement.id = id;
   myElement.name = name;
@@ -124,7 +124,7 @@ function toggleDarkMode() {
 }
 
 // NOTE - currentQuestion;
-let currentQuestion = 0;
+let currentQuestion = 1;
 let userAnswers = [];
 let darkMode = false;
 startQuizPage();
@@ -166,7 +166,7 @@ function startQuizPage() {
     mainDiv.innerHTML = "";
     create({ elementType: "h1", appendWhere: mainDiv, innerText: "Welcome to the quiz!" });
     create({ elementType: "h2", appendWhere: mainDiv, innerText: `This quiz is about the Urban Rescue Ranch youtube channel and has ${questions.length} questions. Good luck!` });
-    create({ elementType: "button", appendWhere: mainDiv, innerText: "Start quiz", eventListenerFunc: () => displayQuestion(), className: darkMode ? "dark-button" : "light-button" });
+    create({ elementType: "button", appendWhere: mainDiv, innerText: "Start quiz", eventListenerFunc: () => displayQuestion(), className: darkMode ? "dark-button" : "light-button", extraCSS: "f:30" });
   }
   // for debugging
   else {
@@ -184,8 +184,8 @@ function displayQuestion() {
   create({ elementType: "h2", appendWhere: mainDiv, innerText: questions[currentQuestion].question, extraCSS: "font:40 font:heavy m:10 text:center" });
 
   if (questions[currentQuestion].questionType === "trueFalse") {
-    create({ elementType: "button", appendWhere: mainDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button" });
-    create({ elementType: "button", appendWhere: mainDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button" });
+    create({ elementType: "button", appendWhere: mainDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: "f:50" });
+    create({ elementType: "button", appendWhere: mainDiv, innerText: "No", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: "f:50" });
   }
   else if (questions[currentQuestion].questionType === "checkboxes") {
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
