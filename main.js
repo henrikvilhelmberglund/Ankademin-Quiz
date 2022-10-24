@@ -180,7 +180,6 @@ function displayQuestion() {
     noButton.innerText = "No";
     noButton.className = darkMode ? "dark-button" : "light-button";
     mainDiv.append(noButton);
-    return "trueFalse";
   }
   else if (questions[currentQuestion].questionType === "checkboxes") {
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
@@ -208,7 +207,6 @@ function displayQuestion() {
     let buttonDiv = document.createElement("div");
     mainDiv.append(buttonDiv);
     buttonDiv.append(submitButton);
-    return "checkboxes";
   }
   else if (questions[currentQuestion].questionType === "multipleChoice") {
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
@@ -241,7 +239,6 @@ function displayQuestion() {
     let buttonDiv = document.createElement("div");
     mainDiv.append(buttonDiv);
     buttonDiv.append(submitButton);
-    return "multipleChoice";
   }
 }
 
@@ -307,7 +304,6 @@ function checkAnswer(e) {
   else if (questions[currentQuestion].questionType === "multipleChoice") {
     let selectedRadioBox = document.querySelector("input:checked");
 
-    // check if user selected the correct answers and not just everything
     if (correctAnswers.includes(selectedRadioBox.value.toUpperCase())) {
       userAnswers.push("correct");
     }
@@ -315,9 +311,7 @@ function checkAnswer(e) {
       userAnswers.push("incorrect");
     }
     nextQuestion();
-    return "multipleChoice";
   }
-  return "end";
 }
 
 /**
