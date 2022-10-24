@@ -87,13 +87,13 @@ darkModeToggleButton.addEventListener("click", () => { toggleDarkMode(); });
 let darkMode = false;
 document.body.prepend(darkModeToggleButton);
 
-function create(elementType, appendWhere, innerText, eventListenerFunc, className, extraCSS, value, id, name, htmlFor) {
+function create({ elementType, appendWhere, innerText, eventListenerFunc, className, extraCSS, value, id, name, htmlFor, type }) {
   let myElement = document.createElement(elementType);
   if (innerText) {
     myElement.innerText = innerText;
   }
   if (eventListenerFunc) {
-    myElement.addEventListener("click", () => eventListenerFunc());
+    myElement.addEventListener("click", eventListenerFunc);
   }
   if (className) {
     myElement.className = className;
@@ -112,6 +112,9 @@ function create(elementType, appendWhere, innerText, eventListenerFunc, classNam
   }
   if (htmlFor) {
     myElement.htmlFor = htmlFor;
+  }
+  if (type) {
+    myElement.type = type;
   }
   appendWhere.append(myElement);
   return myElement;
@@ -137,7 +140,7 @@ function toggleDarkMode() {
 }
 
 // NOTE - currentQuestion;
-let currentQuestion = 0;
+let currentQuestion = 10;
 let userAnswers = [];
 startQuizPage();
 
@@ -174,10 +177,16 @@ function capitalize(string) {
  * It creates a welcome page with a start button that starts the quiz.
  */
 function startQuizPage() {
-  mainDiv.innerHTML = "";
-  create("h1", mainDiv, "Welcome to the quiz!");
-  create("h2", mainDiv, `This quiz is about the Urban Rescue Ranch youtube channel and has ${questions.length} questions. Good luck!`);
-  create("button", mainDiv, "Start quiz", displayQuestion);
+  if (currentQuestion === 0) {
+    mainDiv.innerHTML = "";
+    create({ elementType: "h1", appendWhere: mainDiv, innerText: "Welcome to the quiz!" });
+    create({ elementType: "h2", appendWhere: mainDiv, innerText: `This quiz is about the Urban Rescue Ranch youtube channel and has ${questions.length} questions. Good luck!` });
+    create({ elementType: "button", appendWhere: mainDiv, innerText: "Start quiz", eventListenerFunc: () => displayQuestion() });
+  }
+  // for debugging
+  else {
+    displayQuestion();
+  }
 }
 
 // NOTE - displayQuestion()
@@ -187,41 +196,49 @@ function startQuizPage() {
  */
 function displayQuestion() {
   mainDiv.innerHTML = "";
-  let questionH2 = document.createElement("h2");
-  questionH2.innerText = questions[currentQuestion].question;
-  questionH2.className = "font:40 font:heavy m:10 text:center";
-  mainDiv.append(questionH2);
+  create({ elementType: "h2", appendWhere: mainDiv, innerText: questions[currentQuestion].question, extraCSS: "font:40 font:heavy m:10 text:center" });
+  // let questionH2 = document.createElement("h2");
+  // questionH2.innerText = questions[currentQuestion].question;
+  // questionH2.className = "font:40 font:heavy m:10 text:center";
+  // mainDiv.append(questionH2);
 
   if (questions[currentQuestion].questionType === "trueFalse") {
-    let yesButton = document.createElement("button");
-    yesButton.addEventListener("click", (e) => checkAnswer(e));
-    yesButton.innerText = "Yes";
-    yesButton.className = darkMode ? "dark-button" : "light-button";
-    mainDiv.append(yesButton);
-    let noButton = document.createElement("button");
-    noButton.addEventListener("click", (e) => checkAnswer(e));
-    noButton.innerText = "No";
-    noButton.className = darkMode ? "dark-button" : "light-button";
-    mainDiv.append(noButton);
+    create({ elementType: "button", appendWhere: mainDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button" });
+    create({ elementType: "button", appendWhere: mainDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button" });
+
+
+    // let yesButton = document.createElement("button");
+    // yesButton.addEventListener("click", (e) => checkAnswer(e));
+    // yesButton.innerText = "Yes";
+    // yesButton.className = darkMode ? "dark-button" : "light-button";
+    // mainDiv.append(yesButton);
+    // let noButton = document.createElement("button");
+    // noButton.addEventListener("click", (e) => checkAnswer(e));
+    // noButton.innerText = "No";
+    // noButton.className = darkMode ? "dark-button" : "light-button";
+    // mainDiv.append(noButton);
   }
   else if (questions[currentQuestion].questionType === "checkboxes") {
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
-      let checkbox = document.createElement("input");
-      checkbox.id = "checkbox";
-      checkbox.value = possibleAnswer;
-      let checkboxLabel = document.createElement("label");
-      if (debug) {
-        checkboxLabel.innerText = possibleAnswer;
-      }
-      else {
-        checkboxLabel.innerText = capitalize(possibleAnswer);
-      }
-      checkbox.type = "checkbox";
-      checkboxLabel.htmlFor = "checkbox";
-      let checkboxDiv = document.createElement("div");
-      mainDiv.append(checkboxDiv);
-      checkboxDiv.append(checkbox);
-      checkboxDiv.append(checkboxLabel);
+      let checkboxDiv = create({ elementType: "div", appendWhere: mainDiv });
+      create({ elementType: "input", appendWhere: checkboxDiv, value: possibleAnswer, id: "checkbox", type: "checkbox" });
+      create({ elementType: "label", appendWhere: checkboxDiv, innerText: capitalize(possibleAnswer), htmlFor: "checkbox" });
+      // let checkbox = document.createElement("input");
+      // checkbox.id = "checkbox";
+      // checkbox.value = possibleAnswer;
+      // let checkboxLabel = document.createElement("label");
+      // if (debug) {
+      //   checkboxLabel.innerText = possibleAnswer;
+      // }
+      // else {
+      //   checkboxLabel.innerText = capitalize(possibleAnswer);
+      // }
+      // checkbox.type = "checkbox";
+      // checkboxLabel.htmlFor = "checkbox";
+      // let checkboxDiv = document.createElement("div");
+      // mainDiv.append(checkboxDiv);
+      // checkboxDiv.append(checkbox);
+      // checkboxDiv.append(checkboxLabel);
     });
     let submitButton = document.createElement("button");
     submitButton.className = darkMode ? "button-light" : "button-dark";
