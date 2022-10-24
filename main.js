@@ -140,7 +140,7 @@ function toggleDarkMode() {
 }
 
 // NOTE - currentQuestion;
-let currentQuestion = 10;
+let currentQuestion = 14;
 let userAnswers = [];
 startQuizPage();
 
@@ -240,37 +240,43 @@ function displayQuestion() {
       // checkboxDiv.append(checkbox);
       // checkboxDiv.append(checkboxLabel);
     });
-    let submitButton = document.createElement("button");
-    submitButton.className = darkMode ? "button-light" : "button-dark";
-    submitButton.addEventListener("click", (e) => checkAnswer(e));
-    submitButton.innerText = "Submit";
-    let buttonDiv = document.createElement("div");
-    mainDiv.append(buttonDiv);
-    buttonDiv.append(submitButton);
+    let buttonDiv = create({ elementType: "div", appendWhere: mainDiv });
+    create({ elementType: "button", appendWhere: buttonDiv, innerText: "Submit", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "button-light" : "button-dark" });
+    // let submitButton = document.createElement("button");
+    //   submitButton.className = darkMode ? "button-light" : "button-dark";
+    //   submitButton.addEventListener("click", (e) => checkAnswer(e));
+    //   submitButton.innerText = "Submit";
+    //   let buttonDiv = document.createElement("div");
+    //   mainDiv.append(buttonDiv);
+    //   buttonDiv.append(submitButton);
   }
   else if (questions[currentQuestion].questionType === "multipleChoice") {
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
-      let radioButton = document.createElement("input");
-      radioButton.id = "radioButton";
-      radioButton.name = radioButton;
-      radioButton.value = possibleAnswer;
-      radioButton.className = "ac:normal";
-      let radioButtonLabel = document.createElement("label");
-      if (debug) {
-        radioButtonLabel.innerText = possibleAnswer;
-      }
-      else {
-        radioButtonLabel.innerText = capitalize(possibleAnswer);
-      }
-      radioButton.type = "radio";
-      radioButton.className = "appearance:none round w:30 h:30 b:2|solid|blue-40 b:2|solid|blue-60:hover bg:blue-40:checked v:middle";
-      radioButtonLabel.htmlFor = "radioButton";
-      radioButtonLabel.className = "v:middle m:10";
-      let radioButtonDiv = document.createElement("div");
-      radioButtonDiv.className = "f:25! m:1.6rem";
-      mainDiv.append(radioButtonDiv);
-      radioButtonDiv.append(radioButton);
-      radioButtonDiv.append(radioButtonLabel);
+      let radioButtonDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "f:25! m:1.6rem" });
+      create({ elementType: "input", appendWhere: radioButtonDiv, type: "radio", id: "radioButton", name: "radioButton", value: possibleAnswer, extraCSS: "appearance:none round w:30 h:30 b:2|solid|blue-40 b:2|solid|blue-60:hover bg:blue-40:checked v:middle" });
+      create({ elementType: "label", appendWhere: radioButtonDiv, innerText: debug ? possibleAnswer : capitalize(possibleAnswer), htmlFor: "radioButton", extraCSS: "v:middle m:10" });
+      // let radioButton = document.createElement("input");
+      // radioButton.id = "radioButton";
+      // radioButton.name = radioButton;
+      // radioButton.value = possibleAnswer;
+      // radioButton.className = "ac:normal";
+      // radioButton.type = "radio";
+      // radioButton.className = "appearance:none round w:30 h:30 b:2|solid|blue-40 b:2|solid|blue-60:hover bg:blue-40:checked v:middle";
+
+      // let radioButtonLabel = document.createElement("label");
+      // if (debug) {
+      //   radioButtonLabel.innerText = possibleAnswer;
+      // }
+      // else {
+      //   radioButtonLabel.innerText = capitalize(possibleAnswer);
+      // }
+      // radioButtonLabel.htmlFor = "radioButton";
+      // radioButtonLabel.className = "v:middle m:10";
+      // let radioButtonDiv = document.createElement("div");
+      // radioButtonDiv.className = "f:25! m:1.6rem";
+      // mainDiv.append(radioButtonDiv);
+      // radioButtonDiv.append(radioButton);
+      // radioButtonDiv.append(radioButtonLabel);
     });
     let submitButton = document.createElement("button");
     submitButton.className = darkMode ? "dark-button" : "light-button";
