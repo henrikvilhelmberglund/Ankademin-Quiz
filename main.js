@@ -124,7 +124,7 @@ function toggleDarkMode() {
 }
 
 // NOTE - currentQuestion;
-let currentQuestion = 0;
+let currentQuestion = 10;
 let userAnswers = [];
 let darkMode = false;
 let buttonYesNoExtraCSS = "f:50 h:150 w:150 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
@@ -192,11 +192,11 @@ function displayQuestion() {
   }
   else if (questions[currentQuestion].questionType === "checkboxes") {
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
-      let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:block justify-content:center" });
-      let checkboxDiv = create({ elementType: "div", appendWhere: innerDiv, extraCSS: "d:flex" });
-      create({ elementType: "input", appendWhere: checkboxDiv, value: possibleAnswer, id: possibleAnswer, type: "checkbox", extraCSS: "h:50 w:50 appearance:none bg:blue-90 b:2|solid|blue-70 bg:blue-60:checked" });
-      create({ elementType: "span", appendWhere: checkboxDiv, extraCSS: "m:10" });
-      create({ elementType: "label", appendWhere: checkboxDiv, innerText: capitalize(possibleAnswer), htmlFor: possibleAnswer, extraCSS: "f:30 p:0" });
+      let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:block" });
+      let checkboxDiv = create({ elementType: "div", appendWhere: innerDiv, extraCSS: "flex align-content:center" });
+      create({ elementType: "span", appendWhere: checkboxDiv, extraCSS: "p:40" });
+      create({ elementType: "input", appendWhere: checkboxDiv, value: possibleAnswer, id: possibleAnswer, type: "checkbox", extraCSS: "h:50 w:50 m:0 p:0 appearance:none bg:blue-90 b:2|solid|blue-70 bg:blue-60:checked" });
+      create({ elementType: "label", appendWhere: checkboxDiv, innerText: capitalize(possibleAnswer), htmlFor: possibleAnswer, extraCSS: "f:30 p:0 m:10" });
     });
     create({ elementType: "br", appendWhere: mainDiv });
     let buttonDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center" });
