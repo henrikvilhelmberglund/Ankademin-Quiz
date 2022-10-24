@@ -128,6 +128,7 @@ let currentQuestion = 10;
 let userAnswers = [];
 let darkMode = false;
 let buttonYesNoExtraCSS = "f:50 h:150 w:150 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
+let buttonSubmitExtraCSS = "f:50 h:150 w:250 bg:blue-80 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
 startQuizPage();
 
 /**
@@ -183,7 +184,7 @@ let labelExtraCSS = "f:30";
  */
 function displayQuestion() {
   mainDiv.innerHTML = "";
-  create({ elementType: "h2", appendWhere: mainDiv, innerText: questions[currentQuestion].question, extraCSS: "f:40 text:center" });
+  create({ elementType: "h2", appendWhere: mainDiv, innerText: questions[currentQuestion].question, extraCSS: "f:34 text:center" });
   if (questions[currentQuestion].questionType === "trueFalse") {
     let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:flex justify-content:center" });
     create({ elementType: "button", appendWhere: innerDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: buttonYesNoExtraCSS });
@@ -194,13 +195,13 @@ function displayQuestion() {
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
       let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:block" });
       let checkboxDiv = create({ elementType: "div", appendWhere: innerDiv, extraCSS: "flex align-content:center" });
-      create({ elementType: "span", appendWhere: checkboxDiv, extraCSS: "p:40" });
+      create({ elementType: "span", appendWhere: checkboxDiv, extraCSS: "w:40 p:30" });
       create({ elementType: "input", appendWhere: checkboxDiv, value: possibleAnswer, id: possibleAnswer, type: "checkbox", extraCSS: "h:50 w:50 m:0 p:0 appearance:none bg:blue-90 b:2|solid|blue-70 bg:blue-60:checked" });
       create({ elementType: "label", appendWhere: checkboxDiv, innerText: capitalize(possibleAnswer), htmlFor: possibleAnswer, extraCSS: "f:30 p:0 m:10" });
     });
     create({ elementType: "br", appendWhere: mainDiv });
     let buttonDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center" });
-    create({ elementType: "button", appendWhere: buttonDiv, innerText: "Submit", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "button-light" : "button-dark", extraCSS: "h:60 w:150" });
+    create({ elementType: "button", appendWhere: buttonDiv, innerText: "Submit", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "button-light" : "button-dark", extraCSS: buttonSubmitExtraCSS });
   }
   else if (questions[currentQuestion].questionType === "multipleChoice") {
     let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:block justify-content:center" });
