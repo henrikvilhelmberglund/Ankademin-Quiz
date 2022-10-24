@@ -207,6 +207,7 @@ function displayQuestion() {
     let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:block justify-content:center" });
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
       let radioButtonDiv = create({ elementType: "div", appendWhere: innerDiv, extraCSS: "f:30" });
+      //TODO bug here - clicking radioButton label should select correct thingy
       create({ elementType: "input", appendWhere: radioButtonDiv, type: "radio", id: "radioButton", name: "radioButton", value: possibleAnswer, extraCSS: "appearance:none round w:30 h:30 b:2|solid|blue-70 bg:blue-60:checked v:middle" });
       create({ elementType: "label", appendWhere: radioButtonDiv, innerText: debug ? possibleAnswer : capitalize(possibleAnswer), htmlFor: "radioButton", extraCSS: "v:middle m:10" });
     });
