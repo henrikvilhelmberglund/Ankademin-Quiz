@@ -124,7 +124,7 @@ function toggleDarkMode() {
 }
 
 // NOTE - currentQuestion;
-let currentQuestion = 10;
+let currentQuestion = 0;
 let userAnswers = [];
 let darkMode = false;
 let buttonYesNoExtraCSS = "f:50 h:150 w:150 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
