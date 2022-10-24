@@ -78,15 +78,10 @@ const questions = [
 ];
 
 let debug = false;
-let mainDiv = document.createElement("div");
-document.body.append(mainDiv);
-let darkModeToggleButton = document.createElement("button");
-darkModeToggleButton.className = "light-button";
-darkModeToggleButton.innerText = "Toggle Dark Mode";
-darkModeToggleButton.addEventListener("click", () => { toggleDarkMode(); });
-document.body.prepend(darkModeToggleButton);
+let mainDiv = create({ elementType: "div", appendWhere: document.body });
+let darkModeToggleButton = create({ elementType: "button", prependWhere: document.body, innerText: "Toggle Dark Mode", className: "light-button", eventListenerFunc: () => toggleDarkMode() });
 
-function create({ elementType, appendWhere, innerText = "", eventListenerFunc, className = "no-class", extraCSS = "", value = "no-value", id = "no-id", name = "", htmlFor = "", type = "" }) {
+function create({ elementType, appendWhere, innerText = "", eventListenerFunc, className = "no-class", extraCSS = "", value = "no-value", id = "no-id", name = "", htmlFor = "", type = "", prependWhere }) {
   let myElement = document.createElement(elementType);
   myElement.innerText = innerText;
 
@@ -100,7 +95,12 @@ function create({ elementType, appendWhere, innerText = "", eventListenerFunc, c
   myElement.name = name;
   myElement.htmlFor = htmlFor;
   myElement.type = type;
-  appendWhere.append(myElement);
+  if (appendWhere) {
+    appendWhere.append(myElement);
+  }
+  if (prependWhere) {
+    prependWhere.prepend(myElement);
+  }
   return myElement;
 }
 
