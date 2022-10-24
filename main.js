@@ -91,16 +91,15 @@ document.body.prepend(darkModeToggleButton);
  * If dark mode is on, turn it off and vice versa
  */
 function toggleDarkMode() {
+  let allButtons = document.querySelectorAll("button");
   if (darkMode) {
     document.body.className = "light";
-    let allButtons = document.querySelectorAll("button");
     allButtons.forEach(button => button.className = "light-button");
     darkModeToggleButton.innerText = "Toggle Dark Mode";
     darkMode = false;
   }
   else {
     document.body.className = "dark";
-    let allButtons = document.querySelectorAll("button");
     allButtons.forEach(button => button.className = "dark-button");
     darkModeToggleButton.innerText = "Toggle Light Mode";
     darkMode = true;
@@ -141,6 +140,9 @@ function capitalize(string) {
   return string;
 }
 
+/**
+ * It creates a welcome page with a start button that starts the quiz.
+ */
 function startQuizPage() {
   mainDiv.innerHTML = "";
   let welcomeH1 = document.createElement("h1");
@@ -149,7 +151,6 @@ function startQuizPage() {
   welcomeH2.innerText = `This quiz is about the Urban Rescue Ranch youtube channel and has ${questions.length} questions. Good luck!`;
   mainDiv.append(welcomeH1);
   mainDiv.append(welcomeH2);
-
   let startButton = document.createElement("button");
   startButton.innerText = "Start quiz";
   startButton.addEventListener("click", () => displayQuestion());
@@ -243,8 +244,6 @@ function displayQuestion() {
     return "multipleChoice";
   }
 }
-
-
 
 /**
  * It takes the answers from the current question, splits them into an array, then checks each item in
