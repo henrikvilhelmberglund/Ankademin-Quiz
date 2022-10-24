@@ -109,7 +109,8 @@ function toggleDarkMode() {
 
 // NOTE - currentQuestion;
 let currentQuestion = 0;
-displayQuestion();
+let userAnswers = [];
+startQuizPage();
 
 /**
  * It takes a string, makes it an array, then iterates through the array, capitalizing the first
@@ -138,6 +139,21 @@ function capitalize(string) {
   string = string.join("");
   string = string.replaceAll("*", "");
   return string;
+}
+
+function startQuizPage() {
+  mainDiv.innerHTML = "";
+  let welcomeH1 = document.createElement("h1");
+  welcomeH1.innerText = "Welcome to the quiz!";
+  let welcomeH2 = document.createElement("h2");
+  welcomeH2.innerText = `This quiz is about the Urban Rescue Ranch youtube channel and has ${questions.length} questions. Good luck!`;
+  mainDiv.append(welcomeH1);
+  mainDiv.append(welcomeH2);
+
+  let startButton = document.createElement("button");
+  startButton.innerText = "Start quiz";
+  startButton.addEventListener("click", () => displayQuestion());
+  mainDiv.append(startButton);
 }
 
 // NOTE - displayQuestion()
@@ -228,7 +244,7 @@ function displayQuestion() {
   }
 }
 
-let userAnswers = [];
+
 
 /**
  * It takes the answers from the current question, splits them into an array, then checks each item in
@@ -370,5 +386,5 @@ function showResults() {
 function resetQuiz() {
   currentQuestion = 0;
   userAnswers = [];
-  displayQuestion();
+  startQuizPage();
 }
