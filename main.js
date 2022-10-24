@@ -140,7 +140,7 @@ function toggleDarkMode() {
 }
 
 // NOTE - currentQuestion;
-let currentQuestion = 14;
+let currentQuestion = 0;
 let userAnswers = [];
 startQuizPage();
 
@@ -205,7 +205,6 @@ function displayQuestion() {
   if (questions[currentQuestion].questionType === "trueFalse") {
     create({ elementType: "button", appendWhere: mainDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button" });
     create({ elementType: "button", appendWhere: mainDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button" });
-
 
     // let yesButton = document.createElement("button");
     // yesButton.addEventListener("click", (e) => checkAnswer(e));
@@ -278,13 +277,16 @@ function displayQuestion() {
       // radioButtonDiv.append(radioButton);
       // radioButtonDiv.append(radioButtonLabel);
     });
-    let submitButton = document.createElement("button");
-    submitButton.className = darkMode ? "dark-button" : "light-button";
-    submitButton.addEventListener("click", (e) => checkAnswer(e));
-    submitButton.innerText = "Submit";
-    let buttonDiv = document.createElement("div");
-    mainDiv.append(buttonDiv);
-    buttonDiv.append(submitButton);
+    let buttonDiv = create({ elementType: "div", appendWhere: mainDiv });
+    create({ elementType: "button", appendWhere: buttonDiv, innerText: "Submit", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button" });
+    //   let submitButton = document.createElement("button");
+    //   submitButton.className = darkMode ? "dark-button" : "light-button";
+    //   submitButton.addEventListener("click", (e) => checkAnswer(e));
+    //   submitButton.innerText = "Submit";
+    //   let buttonDiv = document.createElement("div");
+    //   mainDiv.append(buttonDiv);
+    //   buttonDiv.append(submitButton);
+
   }
 }
 
@@ -367,16 +369,19 @@ function nextQuestion() {
   currentQuestion++;
   if (currentQuestion >= questions.length) {
     mainDiv.innerHTML = "";
-    let showResultsDiv = document.createElement("div");
-    let br = document.createElement("br");
-    mainDiv.append(br);
-    mainDiv.append(showResultsDiv);
-    let showResultsButton = document.createElement("button");
-    showResultsButton.className = darkMode ? "dark-button" : "light-button";
-    showResultsButton.innerText = "Show results!";
-    showResultsButton.addEventListener("click", () => showResults());
-    showResultsDiv.append(showResultsButton);
-    showResults();
+    let showResultsDiv = create({ elementType: "div", appendWhere: mainDiv });
+    create({ elementType: "br", appendWhere: showResultsDiv });
+    create({ elementType: "button", appendWhere: showResultsDiv, innerText: "Show results!", eventListenerFunc: () => showResults(), className: darkMode ? "dark-button" : "light-button" });
+    //let showResultsDiv = document.createElement("div");
+    // let br = document.createElement("br");
+    // mainDiv.append(br);
+    // mainDiv.append(showResultsDiv);
+    // let showResultsButton = document.createElement("button");
+    // showResultsButton.className = darkMode ? "dark-button" : "light-button";
+    // showResultsButton.innerText = "Show results!";
+    // showResultsButton.addEventListener("click", () => showResults());
+    // showResultsDiv.append(showResultsButton);
+    //showResults();
   }
   else {
     displayQuestion();
