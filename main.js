@@ -87,6 +87,36 @@ darkModeToggleButton.addEventListener("click", () => { toggleDarkMode(); });
 let darkMode = false;
 document.body.prepend(darkModeToggleButton);
 
+function create(elementType, appendWhere, innerText, eventListenerFunc, className, extraCSS, value, id, name, htmlFor) {
+  let myElement = document.createElement(elementType);
+  if (innerText) {
+    myElement.innerText = innerText;
+  }
+  if (eventListenerFunc) {
+    myElement.addEventListener("click", () => eventListenerFunc());
+  }
+  if (className) {
+    myElement.className = className;
+  }
+  if (extraCSS) {
+    myElement.className += extraCSS;
+  }
+  if (value) {
+    myElement.value = value;
+  }
+  if (id) {
+    myElement.id = id;
+  }
+  if (name) {
+    myElement.name = name;
+  }
+  if (htmlFor) {
+    myElement.htmlFor = htmlFor;
+  }
+  appendWhere.append(myElement);
+  return myElement;
+}
+
 /**
  * If dark mode is on, turn it off and vice versa
  */
@@ -145,16 +175,9 @@ function capitalize(string) {
  */
 function startQuizPage() {
   mainDiv.innerHTML = "";
-  let welcomeH1 = document.createElement("h1");
-  welcomeH1.innerText = "Welcome to the quiz!";
-  let welcomeH2 = document.createElement("h2");
-  welcomeH2.innerText = `This quiz is about the Urban Rescue Ranch youtube channel and has ${questions.length} questions. Good luck!`;
-  mainDiv.append(welcomeH1);
-  mainDiv.append(welcomeH2);
-  let startButton = document.createElement("button");
-  startButton.innerText = "Start quiz";
-  startButton.addEventListener("click", () => displayQuestion());
-  mainDiv.append(startButton);
+  create("h1", mainDiv, "Welcome to the quiz!");
+  create("h2", mainDiv, `This quiz is about the Urban Rescue Ranch youtube channel and has ${questions.length} questions. Good luck!`);
+  create("button", mainDiv, "Start quiz", displayQuestion);
 }
 
 // NOTE - displayQuestion()
