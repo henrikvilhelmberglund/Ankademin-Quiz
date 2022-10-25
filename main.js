@@ -298,7 +298,7 @@ function nextQuestion() {
     mainDiv.innerHTML = "";
     let showResultsDiv = create({ elementType: "div", appendWhere: mainDiv });
     create({ elementType: "br", appendWhere: showResultsDiv });
-    create({ elementType: "button", appendWhere: showResultsDiv, innerText: "Show results!", eventListenerFunc: () => showResults(), className: darkMode ? "dark-button" : "light-button" });
+    create({ elementType: "button", appendWhere: showResultsDiv, innerText: "Show results!", eventListenerFunc: () => showResults(), className: darkMode ? "dark-button" : "light-button", extraCSS: "h:500 w:500" });
   }
   else {
     displayQuestion();
