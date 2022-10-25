@@ -1,5 +1,5 @@
 ---
-theme : "night"
+theme : "black"
 transition: "slide"
 highlightTheme: "atom-one-dark-reasonable"
 //logoImg: "logo.png"

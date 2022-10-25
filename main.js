@@ -78,6 +78,13 @@ const questions = [
 ];
 
 let debug = false;
+// NOTE - currentQuestion;
+let currentQuestion = 0;
+let userAnswers = [];
+let darkMode = false;
+let buttonYesNoExtraCSS = "f:50 h:150 w:150 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
+let buttonSubmitExtraCSS = "f:50 h:150 w:250 bg:blue-80 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
+
 let mainDiv = create({ elementType: "div", appendWhere: document.body, extraCSS: "justify-content:center" });
 let darkModeToggleButton = create({ elementType: "button", prependWhere: document.body, innerText: "Toggle Dark Mode", className: "light-button", eventListenerFunc: () => toggleDarkMode() });
 
@@ -123,13 +130,6 @@ function toggleDarkMode() {
   }
 }
 
-// NOTE - currentQuestion;
-let currentQuestion = 0;
-let userAnswers = [];
-let darkMode = false;
-let buttonYesNoExtraCSS = "f:50 h:150 w:150 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
-let buttonSubmitExtraCSS = "f:50 h:150 w:250 bg:blue-80 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
-startQuizPage();
 
 /**
  * It takes a string, makes it an array, then iterates through the array, capitalizing the first
@@ -349,3 +349,5 @@ function resetQuiz() {
   userAnswers = [];
   startQuizPage();
 }
+
+startQuizPage();
