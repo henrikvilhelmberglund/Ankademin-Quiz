@@ -22,6 +22,10 @@ graph TB
      class F orange
 ```
 
+:::{.green} 
+hello! this is green!
+:::
+
 ---
 
 # ??? vad är det här?
@@ -45,7 +49,7 @@ Pratade på AW om djur -> göra quiz om djur!
 
 # Urban Rescue Ranch
 
-Ben Christie, Texas
+Youtubekanal av Ben Christie, Texas
 
 <img data-src=urbanrescueranch.jpg></img>
 
@@ -73,8 +77,71 @@ const questions = [
   ...
   ]
 ```
+  :::{.red}
+  Yes
+  :::
+  :::{.green} 
+  NO
+  :::
+
+--
+
+Globala variabler 
+```js {data-line-numbers="2|3"}
+let debug = false;
+let currentQuestion = 0;
+let userAnswers = [];
+let darkMode = false;
+```
+
+--
+
+```js
+function create({ elementType, appendWhere, 
+innerText = "", eventListenerFunc, className = "no-class",
+extraCSS = "", value = "no-value", id = "no-id", 
+name = "", htmlFor = "", type = "", prependWhere }) {
+  let myElement = document.createElement(elementType);
+  myElement.innerText = innerText;
+
+  if (eventListenerFunc) {
+    myElement.addEventListener("click", eventListenerFunc);
+  }
+  myElement.className = className;
+  myElement.className += " " + extraCSS;
+  myElement.value = value;
+  myElement.id = id;
+  myElement.name = name;
+  myElement.htmlFor = htmlFor;
+  myElement.type = type;
+  if (appendWhere) {
+    appendWhere.append(myElement);
+  }
+  if (prependWhere) {
+    prependWhere.prepend(myElement);
+  }
+  return myElement;
+}
+```
+```js
+create({ elementType: "h1", appendWhere: mainDiv, innerText: "Welcome to the quiz!" });
+```
+
+--
+
+Visa andra funktioner i VSCode!
 ---
 
+Buggar!
+
+--
+
+Jake Paul
+
+
+--
+
+---
 Berätta vilka utmaningarna med projektet varit, och vilka lärdomar du hämtar från arbetet.
 
 ---

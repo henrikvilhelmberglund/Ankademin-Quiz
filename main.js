@@ -77,8 +77,8 @@ const questions = [
   },
 ];
 
-let debug = false;
 // NOTE - currentQuestion;
+let debug = false;
 let currentQuestion = 0;
 let userAnswers = [];
 let darkMode = false;

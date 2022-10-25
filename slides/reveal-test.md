@@ -7,8 +7,8 @@ slideNumber: false
 title: "VSCode Reveal intro"
 ---
 
-::: block
-*here be dragons* {style=background:red;width:500px}
+::: block 
+*here be dragons*{style=background:red;width:500px}
 
 ::: 
 
@@ -97,7 +97,7 @@ Merged       | Cell 1
 
 ---
 
-<div class="mermaid">
+```mermaid
 sequenceDiagram
     participant Alice
     participant Bob 
@@ -109,11 +109,11 @@ sequenceDiagram
     John-->>Alice: Great!
     John->>Bob: How about you?
     Bob-->>John: Jolly good!
-</div> 
+```
 
 ---
 
-<div class="mermaid">
+```mermaid
 graph LR;
   A(AAAA)==> B(B node);
   B==> C(SEE SEE);
@@ -121,7 +121,7 @@ graph LR;
   class A diag-a-styles;
   class B diag-b-styles
   class C diag-c-styles;
-</div>
+```
 
 ---
 
