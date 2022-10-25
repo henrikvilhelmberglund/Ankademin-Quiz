@@ -132,16 +132,131 @@ create({ elementType: "h1", appendWhere: mainDiv, innerText: "Welcome to the qui
 Visa andra funktioner i VSCode!
 ---
 
-Buggar!
+# Utmaningar: Buggar!
 
---
-
-Jake Paul
-
-
---
+note: Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
 
 ---
+
+# Jake Paul
+
+<img data-src=jake-paul.jpg></img>
+
+--
+
+## question: 
+
+What is the goal the owner of the Urban Rescue Ranch has for his animal friend DaBaby?
+
+## answers: 
+
+To live a peaceful and happy life,
+
+To run from the edge to the other edge of the ranch in 10 seconds
+
+TO FIGHT JAKE PAUL IN A BOXING MATCH
+
+To win a prize in an exhibition
+
+--
+
+Smart funktion
+
+```js
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+console.log(capitalizeFirstLetter('foo')); // Foo
+```
+
+:::{.element class="fragment"}
+
+Min funktion
+```js
+function capitalize(string) {
+  string = Array.from(string);
+  string.forEach((character, i) => {
+    if (i === 0) {
+      string[0] = character.toUpperCase();
+    }
+    else {
+      string[i] = character.toLowerCase();
+    }
+  });
+  string = string.join("");
+  return string;
+}
+console.log(capitalize("FOO FIGHTERS"); // Foo fighters
+```
+:::
+
+--
+
+TO FIGHT JAKE PAUL IN A BOXING MATCH
+
+:::{.element class="fragment"}
+To fight jake paul in a boxing match
+:::
+
+:::{.element class="fragment"}
+To fight Jake Paul in a boxing match
+:::
+
+--
+
+```js {data-line-numbers="3|5-7|8-10"}
+function capitalize(string) {
+  string = Array.from(string);
+  let capsNextCharacter = false;
+  string.forEach((character, i) => {
+    if (character === "*") {
+      capsNextCharacter = true;
+    }
+    else if (capsNextCharacter) {
+      string[i] = character.toUpperCase();
+      capsNextCharacter = false;
+    }
+    else if (i === 0) {
+      string[0] = character.toUpperCase();
+    }
+    else {
+      string[i] = character.toLowerCase();
+    }
+  });
+  string = string.join("");
+  string = string.replaceAll("*", "");
+  return string;
+}
+```
+
+:::{.element class="fragment"}
+```js
+capitalize("TO FIGHT *JAKE *PAUL IN A BOXING MATCH")
+```
+:::
+:::{.element class="fragment" .green}
+```
+// To fight Jake Paul in a boxing match 
+```
+:fa-check:
+:::
+
+
+--
+
+
+![](smart.gif)
+{.r-stretch}
+
+---
+
+# CSS
+
+protip: inte "" i .css
+
+# 
+
+---
+
 Berätta vilka utmaningarna med projektet varit, och vilka lärdomar du hämtar från arbetet.
-
----
