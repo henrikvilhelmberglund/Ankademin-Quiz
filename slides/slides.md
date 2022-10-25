@@ -259,4 +259,35 @@ protip: inte "" i .css
 
 ---
 
-Berätta vilka utmaningarna med projektet varit, och vilka lärdomar du hämtar från arbetet.
+# Lärdomar
+
+--
+
+# VSCode är bra
+
+- Bracket Pairs {."fragment"}
+- ErrorLens-extension {."fragment"}
+- quick-lint-js {."fragment"}
+
+--
+
+# Bundler (?)
+
+- Behövdes för att ha installerad version av Master CSS {."fragment"}
+- Vite {."fragment"}
+
+--
+
+från package.json
+
+```
+...
+"scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+...
+```
+![](I-Have-No-Idea-What-I-m-Doing.jpg)
