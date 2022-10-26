@@ -1,4 +1,5 @@
 import '@master/css';
+import styles from "./buttonstyles.js";
 const questions = [
   {
     questionType: "trueFalse",
@@ -79,15 +80,18 @@ const questions = [
 
 // NOTE - currentQuestion;
 let debug = false;
-let currentQuestion = 0;
+let currentQuestion = 13;
 let userAnswers = [];
 let darkMode = false;
-let buttonYesNoExtraCSS = "f:50 h:150 w:150 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
-let buttonSubmitExtraCSS = "f:50 h:150 w:250 bg:blue-80 outline:0|solid|blue-60 outline:2|solid|blue-60:hover ~50ms b:0";
 
 let mainDiv = create({ elementType: "div", appendWhere: document.body, extraCSS: "justify-content:center" });
-let darkModeToggleButton = create({ elementType: "button", prependWhere: document.body, innerText: "Toggle Dark Mode", className: "light-button", eventListenerFunc: () => toggleDarkMode() });
+let darkModeToggleButton = create({ elementType: "button", prependWhere: document.body, innerText: "Toggle Dark Mode", className: "light-button", eventListenerFunc: () => toggleDarkMode(), extraCSS: styles.buttonDarkmodeExtraCSS });
 
+/**
+ * It creates an element of the type you specify, and then you can add a bunch of other stuff to it,
+ * like a class, an id, an event listener, etc.
+ * @returns The element that was created.
+ */
 function create({ elementType, appendWhere, innerText = "", eventListenerFunc, className = "no-class", extraCSS = "", value = "no-value", id = "no-id", name = "", htmlFor = "", type = "", prependWhere }) {
   let myElement = document.createElement(elementType);
   myElement.innerText = innerText;
@@ -95,7 +99,7 @@ function create({ elementType, appendWhere, innerText = "", eventListenerFunc, c
   if (eventListenerFunc) {
     myElement.addEventListener("click", eventListenerFunc);
   }
-  myElement.className = className;
+  myElement.className += " " + className;
   myElement.className += " " + extraCSS;
   myElement.value = value;
   myElement.id = id;
@@ -130,7 +134,6 @@ function toggleDarkMode() {
   }
 }
 
-
 /**
  * It takes a string, makes it an array, then iterates through the array, capitalizing the first
  * letter, and any letter after a *, then returns the string.
@@ -161,14 +164,16 @@ function capitalize(string) {
 }
 
 /**
- * It creates a welcome page with a start button that starts the quiz.
+ * It creates a start page for the quiz.
  */
 function startQuizPage() {
   if (currentQuestion === 0) {
     mainDiv.innerHTML = "";
+    mainDiv.className = "display:grid justify-content:center";
     create({ elementType: "h1", appendWhere: mainDiv, innerText: "Welcome to the quiz!" });
     create({ elementType: "h2", appendWhere: mainDiv, innerText: `This quiz is about the Urban Rescue Ranch youtube channel and has ${questions.length} questions. Good luck!` });
-    create({ elementType: "button", appendWhere: mainDiv, innerText: "Start quiz", eventListenerFunc: () => displayQuestion(), className: darkMode ? "dark-button" : "light-button", extraCSS: "f:30" });
+    let buttonDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center" });
+    create({ elementType: "button", appendWhere: buttonDiv, innerText: "Start quiz", eventListenerFunc: () => displayQuestion(), className: darkMode ? "dark-button" : "light-button", extraCSS: styles.buttonSubmitExtraCSS });
   }
   // for debugging
   else {
@@ -178,42 +183,41 @@ function startQuizPage() {
 
 let labelExtraCSS = "f:30";
 // NOTE - displayQuestion()
+
 /**
- * It creates a question and its answers based on the question type.
- * @returns "trueFalse"
+ * It creates the HTML elements for the question and answer(s) based on the question type.
  */
 function displayQuestion() {
   mainDiv.innerHTML = "";
-  create({ elementType: "h2", appendWhere: mainDiv, innerText: questions[currentQuestion].question, extraCSS: "f:34 text:center" });
+  create({ elementType: "h2", appendWhere: mainDiv, innerText: questions[currentQuestion].question, extraCSS: "f:36 text:center" });
   if (questions[currentQuestion].questionType === "trueFalse") {
     let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:flex justify-content:center" });
-    create({ elementType: "button", appendWhere: innerDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: buttonYesNoExtraCSS });
+    create({ elementType: "button", appendWhere: innerDiv, innerText: "Yes", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: styles.buttonYesNoExtraCSS });
     create({ elementType: "span", appendWhere: innerDiv, extraCSS: "w:50 d:inline-block" });
-    create({ elementType: "button", appendWhere: innerDiv, innerText: "No", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: buttonYesNoExtraCSS });
+    create({ elementType: "button", appendWhere: innerDiv, innerText: "No", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: styles.buttonYesNoExtraCSS });
   }
   else if (questions[currentQuestion].questionType === "checkboxes") {
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
       let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:block" });
       let checkboxDiv = create({ elementType: "div", appendWhere: innerDiv, extraCSS: "flex align-content:center" });
       create({ elementType: "span", appendWhere: checkboxDiv, extraCSS: "w:40 p:30" });
-      create({ elementType: "input", appendWhere: checkboxDiv, value: possibleAnswer, id: possibleAnswer, type: "checkbox", extraCSS: "h:50 w:50 m:0 p:0 appearance:none bg:blue-90 b:2|solid|blue-70 bg:blue-60:checked" });
+      create({ elementType: "input", appendWhere: checkboxDiv, value: possibleAnswer, id: possibleAnswer, type: "checkbox", extraCSS: "h:50 w:50 m:0 p:0 appearance:none b:2|solid|blue-70 bg:blue-60:checked" });
       create({ elementType: "label", appendWhere: checkboxDiv, innerText: capitalize(possibleAnswer), htmlFor: possibleAnswer, extraCSS: "f:30 p:0 m:10" });
     });
     create({ elementType: "br", appendWhere: mainDiv });
     let buttonDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center" });
-    create({ elementType: "button", appendWhere: buttonDiv, innerText: "Submit", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "button-light" : "button-dark", extraCSS: buttonSubmitExtraCSS });
+    create({ elementType: "button", appendWhere: buttonDiv, innerText: "Submit", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: styles.buttonSubmitExtraCSS });
   }
   else if (questions[currentQuestion].questionType === "multipleChoice") {
-    let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:block justify-content:center" });
+    let innerDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center" });
     questions[currentQuestion].answers.split(",").forEach(possibleAnswer => {
       let radioButtonDiv = create({ elementType: "div", appendWhere: innerDiv, extraCSS: "f:30" });
-      //TODO bug here - clicking radioButton label should select correct thingy
       create({ elementType: "input", appendWhere: radioButtonDiv, type: "radio", id: possibleAnswer, name: "radioButton", value: possibleAnswer, extraCSS: "appearance:none round w:30 h:30 b:2|solid|blue-70 bg:blue-60:checked v:middle" });
       create({ elementType: "label", appendWhere: radioButtonDiv, innerText: debug ? possibleAnswer : capitalize(possibleAnswer), htmlFor: possibleAnswer, extraCSS: "v:middle m:10" });
     });
     create({ elementType: "br", appendWhere: mainDiv });
-    let buttonDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:block" });
-    create({ elementType: "button", appendWhere: mainDiv, innerText: "Submit", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button" });
+    let buttonDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center" });
+    create({ elementType: "button", appendWhere: buttonDiv, innerText: "Submit", eventListenerFunc: (e) => checkAnswer(e), className: darkMode ? "dark-button" : "light-button", extraCSS: styles.buttonSubmitExtraCSS });
   }
 }
 
@@ -238,10 +242,10 @@ function returnCorrectAnswers() {
 // needs to be added at the end of the return statement!!
 // {console.table($returnValue)}
 
+
 /**
  * It checks the user's answer and pushes the result to the userAnswers array.
  * @param e - the event object
- * @returns "end"
  */
 function checkAnswer(e) {
   let correctAnswers = returnCorrectAnswers().correctAnswers;
@@ -289,16 +293,19 @@ function checkAnswer(e) {
   }
 }
 
+
 /**
- * It creates a button that, when clicked, calls the showResults() function.
+ * It checks if the current question is the last question, if it is, it displays the results, if it
+ * isn't, it displays the next question.
  */
 function nextQuestion() {
   currentQuestion++;
   if (currentQuestion >= questions.length) {
     mainDiv.innerHTML = "";
-    let showResultsDiv = create({ elementType: "div", appendWhere: mainDiv });
+    let showResultsDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center" });
+    create({ elementType: "h1", innerText: "You finished the quiz!", appendWhere: showResultsDiv, extraCSS: "text:center" });
     create({ elementType: "br", appendWhere: showResultsDiv });
-    create({ elementType: "button", appendWhere: showResultsDiv, innerText: "Show results!", eventListenerFunc: () => showResults(), className: darkMode ? "dark-button" : "light-button", extraCSS: "h:500 w:500" });
+    create({ elementType: "button", appendWhere: showResultsDiv, innerText: "Show results!", eventListenerFunc: () => showResults(), className: darkMode ? "dark-button" : "light-button", extraCSS: "h:500 w:500 f:50" });
   }
   else {
     displayQuestion();
@@ -308,41 +315,32 @@ function nextQuestion() {
 /**
  * It creates a div for each question, and then appends a paragraph to each div that says whether the
  * user got the question right or wrong. It then creates a paragraph that says how many questions the
- * user got right, and appends a button to reset the quiz
+ * user got right out of the total number of questions. It then creates a button that resets the quiz
  */
 function showResults() {
   mainDiv.innerHTML = "";
   let totalCorrect = 0;
-  let totalDiv = document.createElement("div");
-  mainDiv.append(totalDiv);
+  let totalDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center text:center " });
   userAnswers.forEach((userAnswer, i) => {
-    let answerDiv = document.createElement("div");
-    answerDiv.className = userAnswer === "correct" ? "result-green" : "result-red";
+    let answerDiv = create({ elementType: "div", appendWhere: totalDiv, className: userAnswer === "correct" ? "result-green" : "result-red", extraCSS: "d:grid justify-content:center height:30px" });
     let userAnswerEmoji = userAnswer === "correct" ? "✔️" : "❌";
     totalCorrect = userAnswer === "correct" ? totalCorrect += 1 : totalCorrect;
-    let p = `Question ${i + 1}: ${userAnswerEmoji}`;
-    answerDiv.append(p);
-    totalDiv.append(answerDiv);
+    create({ elementType: "p", appendWhere: answerDiv, innerText: `Question ${i + 1}: ${userAnswerEmoji}` });
   });
-  let totalP = document.createElement("p");
-  totalDiv.className = totalCorrect / questions.length > 0.75 ? "result-green" :
+  totalDiv.className += totalCorrect / questions.length > 0.75 ? "result-green" :
     totalCorrect / questions.length >= 0.5 ? "result-yellow" :
       totalCorrect / questions.length < 0.5 ? "result-red" : "error";
   let grade = totalCorrect / questions.length > 0.75 ? "Congratulations! You passed with honors!" :
     totalCorrect / questions.length >= 0.5 ? "Congratulations, you passed." :
       totalCorrect / questions.length < 0.5 ? "Unfortunately you didn't pass." : "error";
-  totalP.innerText = `You had a total of ${totalCorrect} out of ${questions.length} correct answers. ${grade}`;
-  totalDiv.append(totalP);
-  let resetButton = document.createElement("button");
-  resetButton.innerText = "Reset Quiz";
-  resetButton.className = darkMode ? "dark-button" : "light-button";
-  resetButton.addEventListener("click", () => resetQuiz());
-  totalDiv.append(resetButton);
+  create({ elementType: "p", id: "resultText", appendWhere: totalDiv, innerText: `You had a total of ${totalCorrect} out of ${questions.length} correct answers. ${grade}`, extraCSS: "f:30" });
+  let buttonDiv = create({ elementType: "div", appendWhere: mainDiv, extraCSS: "d:grid justify-content:center text:center" });
+  create({ elementType: "button", appendWhere: buttonDiv, innerText: "Reset quiz", className: darkMode ? "dark-button" : "light-button", eventListenerFunc: () => resetQuiz(), extraCSS: styles.resetQuizButtonExtraCSS });
 }
 
 /**
- * The resetQuiz function resets the currentQuestion to 0, empties the userAnswers array, and displays
- * the first question.
+ * The resetQuiz function resets the currentQuestion to 0, the userAnswers array to an empty array, and
+ * then calls the startQuizPage function.
  */
 function resetQuiz() {
   currentQuestion = 0;
