@@ -6,7 +6,7 @@
 
 - npm run dev
 
-or go to [the github pages site](henrikvilhelmberglund.github.io/Ankademin-Quiz/)
+or go to [the github pages site](https://henrikvilhelmberglund.github.io/Ankademin-Quiz/)
 
 ____________________________
 ## Ankademin Quiz
