@@ -80,7 +80,7 @@ const questions = [
 
 // NOTE - currentQuestion;
 let debug = false;
-let currentQuestion = 13;
+let currentQuestion = 0;
 let userAnswers = [];
 let darkMode = false;
 
