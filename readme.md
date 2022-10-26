@@ -1,5 +1,12 @@
 # Individuellt projektarbete - Ankademin Quiz
 
+## Install
+
+- npm run install
+
+- npm run dev
+
+____________________________
 ## Ankademin Quiz
 
 ### Beskrivning
@@ -10,7 +17,7 @@ Du ska även ha ditt projekt på Github och pusha upp kod kontinuerligt under pr
 
 ### Kravsättning
 
-?Betyg G
+*Betyg G
 
 *- Quizet ska innehålla 10 frågor. Frågorna ska bestå utav sant/falskt påståenden med två möjliga svarsalternativ: Sant eller Falskt.
 
@@ -25,7 +32,7 @@ Du ska även ha ditt projekt på Github och pusha upp kod kontinuerligt under pr
 *> 75% - Mycket väl godkänt (grönt)
 *Du har gjort minst 3 commits till ditt Github-repository under projektets gång.
 
-?Betyg VG
+*?*Betyg VG
 
 *Alla G-krav är uppfyllda
 
@@ -39,12 +46,12 @@ Du ska även ha ditt projekt på Github och pusha upp kod kontinuerligt under pr
 
 *Användaren ska kunna se exakt vilka frågor hen besvarat rätt och/eller felaktigt när resultatet visas. (Om hen besvarat frågan fel, bestämmer du själv om du vill skriva ut det rätta svaret eller inte).
 
-?Tekniskt krav: Koden följer “DRY”-principen (Dont repeat yourself) och undviker större upprepningar av kod i logiken.
+*Tekniskt krav: Koden följer “DRY”-principen (Dont repeat yourself) och undviker större upprepningar av kod i logiken.
 
 
-?Bonus: Försök att snygga till quizet med CSS så att den ser lite mer användarvänlig ut!
+*Bonus: Försök att snygga till quizet med CSS så att den ser lite mer användarvänlig ut!
 
-?Inlämning sker i form av en (publik, ej privat) github-länk.
+*Inlämning sker i form av en (publik, ej privat) github-länk.
 
 // push dist to gh-pages
 // git subtree push --prefix dist origin gh-pages
