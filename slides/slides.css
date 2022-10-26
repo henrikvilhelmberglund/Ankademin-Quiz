@@ -15,3 +15,7 @@ h1,
 h2 {
   text-transform: none !important
 }
+
+.megaemoji {
+  font-size: 500px;
+}

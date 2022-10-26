@@ -7,9 +7,21 @@ slideNumber: false
 title: "VSCode Reveal intro"
 previewLinks: true
 customTheme: slides
+defaultTiming: 20
 ---
 
-note to self, kopiera black.css till laptop 
+Select appearance: 
+    <input type="radio" name="theme" value="chalkboard" onclick="changeTheme(this);" checked autocomplete="off"> Chalkboard</input>
+    <input type="radio" name="theme" value="whiteboard" onclick="changeTheme(this);" autocomplete="off"> Whiteboard</input>
+
+
+👼    
+
+{.slide: data-background="jake-paul.jpg"}
+
+note to self, kopiera black.css till laptop
+och markdown-it-emoji.js och lägg in i index.html
+disabla Fullscreen i init.ejs (i notepad)
 paragraph *style me*{.red} text
 ```mermaid
 graph TB
@@ -24,6 +36,13 @@ graph TB
 
 :::{.green} 
 hello! this is green!
+:::
+{data-timing: 666}
+
+--
+
+:::{.megaemoji}
+🦘
 :::
 
 ---
@@ -170,7 +189,7 @@ function capitalizeFirstLetter(string) {
 console.log(capitalizeFirstLetter('foo')); // Foo
 ```
 
-:::{.element class="fragment"}
+--
 
 Min funktion
 ```js
@@ -189,7 +208,6 @@ function capitalize(string) {
 }
 console.log(capitalize("FOO FIGHTERS"); // Foo fighters
 ```
-:::
 
 --
 
@@ -271,10 +289,35 @@ protip: inte "" i .css
 
 --
 
-# Bundler (?)
+# Ha allt i specialiserade funktioner
+
+- create()
+- toggleDarkMode()
+- capitalize()
+- startQuizPage()
+- displayQuestion()
+- returnCorrectAnswers()
+- checkAnswer()
+- nextQuestion()
+- showResults()
+- resetQuiz() 
+
+--
+
+# NPM + Bundler (?)
 
 - Behövdes för att ha installerad version av Master CSS {."fragment"}
 - Vite {."fragment"}
+
+--
+
+# npm install library-name
+
+installerar library-name
+- npm install @master/css
+- npm create vite@latest
+
+men finns också yarn och pnpm (???)
 
 --
 
