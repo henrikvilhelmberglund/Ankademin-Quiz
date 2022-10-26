@@ -3,47 +3,28 @@ theme : "black"
 transition: "slide"
 highlightTheme: "one-monokai"
 //logoImg: "logo.png"
-slideNumber: false
+slideNumber: true
 title: "VSCode Reveal intro"
-previewLinks: true
+previewLinks: false
 customTheme: slides
 defaultTiming: 20
 ---
 
-Select appearance: 
-    <input type="radio" name="theme" value="chalkboard" onclick="changeTheme(this);" checked autocomplete="off"> Chalkboard</input>
-    <input type="radio" name="theme" value="whiteboard" onclick="changeTheme(this);" autocomplete="off"> Whiteboard</input>
-
-
-👼    
-
-{.slide: data-background="jake-paul.jpg"}
-
-note to self, kopiera black.css till laptop
-och markdown-it-emoji.js och lägg in i index.html
-disabla Fullscreen i init.ejs (i notepad)
-paragraph *style me*{.red} text
-```mermaid
-graph TB
-    A["displayQuestion()"] --> B[Användarinput] --> C(ＹＥＳ) --> checkanswerA("checkAnswer(e)") --> E(correct) --> nextquestion(Next Question) --> A
-    B --> D(ｎｏ) --> checkanswerB("checkAnswer(e)") --> F(incorrect) --> nextquestion --> A
-
-     classDef green fill:#9f6,stroke:#333,stroke-width:2px;
-     classDef orange fill:#f96,stroke:#333,stroke-width:4px;
-     class E green
-     class F orange
-```
-
-:::{.green} 
-hello! this is green!
-:::
-{data-timing: 666}
-
---
-
+## Presentation(?) Ankademin Quiz
+##### Henrik Berglund FEND22
 :::{.megaemoji}
-🦘
+🤯
 :::
+
+---
+
+# Kommer prata om
+
+- Bakgrund till quiz
+- Demonstration av quiz
+- Visa och förklara lite om koden
+- Utmaningar: Buggar
+- Lärdomar
 
 ---
 
@@ -56,6 +37,9 @@ hello! this is green!
 (VSCode-extensionversion av libraryt reveal.js)
 
 - Kan göra slides med .md (textfiler) där nya slides markeras med --- (tre bindestreck)
+
+note: nice när man ändå är i VSCode
+
 ---
 
 # Bakgrund till Quiz
@@ -72,19 +56,26 @@ Youtubekanal av Ben Christie, Texas
 
 <img data-src=urbanrescueranch.jpg></img>
 
+note: tar hand om djur som blivit övergivna eller skadade djur och tar hand om dem, sen hittar nya ägare (husdjur)
+
 ---
 
 # Demonstration av Quiz
 
 [Click me!](http://henrikvilhelmberglund.github.io/Ankademin-Quiz)
 
+note: dark mode
+två knapper (enkelt)
+bra för mobil om man slipper ha radiobutton för två alternativ (eller bara jag som är lat)
+visa responsivitet genom att dra i fönstret
+man kan klicka på label också
+
+
 ---
 
-Visa och förklara lite om koden
+# Visa och förklara lite om koden
 
----
-
-# 
+--
 
 ```js
 const questions = [
@@ -103,6 +94,8 @@ const questions = [
   NO
   :::
 
+  note: jag lade in de rätta svaren med stora bokstäver
+
 --
 
 Globala variabler 
@@ -112,6 +105,9 @@ let currentQuestion = 0;
 let userAnswers = [];
 let darkMode = false;
 ```
+
+note: nice med currentQuestion variabel om man vill testa och reloadar sidan ofta, slipper fylla i alla fält hela tiden
+userAnswers är en array där correct eller incorrect sparas för att göra det enklare att räkna ut saker i slutet
 
 --
 
@@ -146,14 +142,32 @@ name = "", htmlFor = "", type = "", prependWhere }) {
 create({ elementType: "h1", appendWhere: mainDiv, innerText: "Welcome to the quiz!" });
 ```
 
+note: jag har ingen HTML så koden blev full med createElement etc
+med en funktion kan jag ha byta ut t.ex 4 rader till 1 rad, i vissa fall fler
+nackdelen är långa rader horisontellt men ändå ok för att jag sätter elementType först
+
+--
+
+```mermaid
+graph TB
+    A["displayQuestion()"] --> B[Användarinput] --> C(ＹＥＳ) --> checkanswerA("checkAnswer(e)") --> E(correct) --> nextquestion(Next Question) --> A
+    B --> D(ｎｏ) --> checkanswerB("checkAnswer(e)") --> F(incorrect) --> nextquestion --> A
+
+     classDef green fill:#9f6,stroke:#333,stroke-width:2px;
+     classDef orange fill:#f96,stroke:#333,stroke-width:4px;
+     class E green
+     class F orange
+```
+
+
 --
 
 Visa andra funktioner i VSCode!
+note: visa t.ex displayQuestion() och 
+
 ---
 
 # Utmaningar: Buggar!
-
-note: Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
 
 ---
 
@@ -188,6 +202,8 @@ function capitalizeFirstLetter(string) {
 
 console.log(capitalizeFirstLetter('foo')); // Foo
 ```
+
+note: det här är en smart funktion, så här ser min ut
 
 --
 
@@ -289,7 +305,7 @@ protip: inte "" i .css
 
 --
 
-# Ha allt i specialiserade funktioner
+## Det är bra att ha specialiserade funktioner
 
 - create()
 - toggleDarkMode()
@@ -302,16 +318,19 @@ protip: inte "" i .css
 - showResults()
 - resetQuiz() 
 
+note: enklare att tänka en funktion i taget
+men ändå nice att dela upp displayQuestion och checkAnswer i tre delar, en för varje typ
+
 --
 
-# NPM + Bundler (?)
+# NPM + Bundler(?)
 
 - Behövdes för att ha installerad version av Master CSS {."fragment"}
 - Vite {."fragment"}
 
 --
 
-# npm install library-name
+## npm install library-name
 
 installerar library-name
 - npm install @master/css
@@ -334,3 +353,11 @@ från package.json
 ...
 ```
 ![](I-Have-No-Idea-What-I-m-Doing.jpg)
+
+---
+
+## Tack för att ni lyssnade!
+
+:::{.megaemoji}
+🙇
+:::
