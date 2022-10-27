@@ -163,7 +163,8 @@ graph TB
 --
 
 Visa andra funktioner i VSCode!
-note: visa t.ex displayQuestion() och 
+
+note: visa t.ex displayQuestion()
 
 ---
 
